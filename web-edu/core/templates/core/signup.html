@@ -1,0 +1,53 @@
+{% extends 'core/layout.html' %}
+
+{% block title %}Регистрация{% endblock %}
+{% block main %}
+    <section class="form-page">
+        <h1 class="page-title">Регистрация</h1>
+
+        <div class="form-error">
+            Пользователь с таким email уже зарегистрирован!
+        </div>
+
+        <form class="auth-form" action="#" method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="reg-login">Логин</label>
+                <input type="text" id="reg-login" name="login" placeholder="dr_pepper" required>
+            </div>
+            <div class="form-group">
+                <label for="reg-email">Email</label>
+                <input type="email" id="reg-email" name="email" placeholder="drpepper@mail.ru" required>
+                <span class="field-error">Email уже используется</span>
+            </div>
+            <div class="form-group">
+                <label for="reg-nickname">Никнейм</label>
+                <input type="text" id="reg-nickname" name="nickname" placeholder="Dr. Pepper" required>
+            </div>
+            <div class="form-group">
+                <label for="reg-password">Пароль</label>
+                <input type="password" id="reg-password" name="password" placeholder="Минимум 8 символов" required minlength="8">
+            </div>
+            <div class="form-group">
+                <label for="reg-password2">Повторите пароль</label>
+                <input type="password" id="reg-password2" name="password2" placeholder="Повторите пароль" required>
+                <span class="field-error">Пароли не совпадают</span>
+            </div>
+
+            <div class="form-group avatar-group">
+                <label>Аватар</label>
+                <div class="avatar-upload">
+                    <div class="avatar-controls">
+                        <input type="file" id="avatar" name="avatar" accept="image/*">
+                        <label for="avatar" class="btn-choose">Выбрать</label>
+                    </div>
+                </div>
+            </div>
+
+            <button type="submit" class="btn-submit">Зарегистрироваться</button>
+
+            <p class="form-hint">
+                Уже есть аккаунт? <a href="{% url 'login' %}">Войти</a>
+            </p>
+        </form>
+    </section>
+{% endblock %}
