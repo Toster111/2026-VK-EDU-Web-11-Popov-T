@@ -1,0 +1,61 @@
+{% extends 'questions/layout.html' %}
+
+{% block title %}{{ question.header }} — Q&A{% endblock %}
+
+{% block main %}
+<article class="main-question">
+    <div class="question-header">
+        <h1>{{ question.header }}</h1>
+        <div class="question-meta">
+            <span class="author">👤 {{ question.author }}</span>
+            <span class="date">📅 {{ question.date }}</span>
+        </div>
+    </div>
+
+    <div class="question-body">
+        <p>{{ question.text }}</p>
+        {% if question.code %}
+        <pre><code>{{ question.code }}</code></pre>
+        {% endif %}
+        <div class="question-tags">
+            {% for tag in question.tag %}
+            <span class="tag">{{ tag }}</span>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="rating-question">
+        <button class="btn up">▲</button>
+        <span class="score">{{ question.rating }}</span>
+        <button class="btn down">▼</button>
+    </div>
+</article>
+
+<section class="answers">
+    <h2>Ответы ({{ answers|length }})</h2>
+
+    {% for answer in answers %}
+    <article class="offer {% if answer.is_correct %}correct{% endif %}">
+        <div class="answer-content">
+            <p>{{ answer.content }}</p>
+            <div class="answer-meta">
+                <span class="author">👤 {{ answer.author }}</span>
+                <span class="date">📅 {{ answer.date }}</span>
+            </div>
+        </div>
+        <div class="offer-rating">
+            <button class="btn up">▲</button>
+            <span class="score">{{ answer.rating }}</span>
+            <button class="btn down">▼</button>
+        </div>
+    </article>
+    {% endfor %}
+
+    <form class="new-answer" method="post">
+        {% csrf_token %}
+        <h3>Ваш ответ</h3>
+        <textarea name="content" placeholder="Напишите ответ..." required></textarea>
+        <button type="submit" class="btn-submit">Отправить</button>
+    </form>
+</section>
+{% endblock %}
