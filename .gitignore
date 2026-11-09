@@ -6,7 +6,8 @@ static/
 .vscode/
 .DS_Store
 *.log
-vk_proj/
+venc/
+.venv/
 .vk_proj/
 __pycache__/
 *.pyc
