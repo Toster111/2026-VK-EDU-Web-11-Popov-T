@@ -2,7 +2,7 @@ import os
 import environ
 
 env = environ.Env()
-environ.Env.read_env('.env')
+environ.Env.read_env('.env_example')
 """
 Django settings for app project.
 
@@ -25,7 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/6.1/howto/deployment/checklist/
 
 SECRET_KEY = env('SECRET_KEY')
-DEBUG = env.bool('DEBUG', default=False)
+DEBUG = env.bool('DEBUG', default=True)
 
 ALLOWED_HOSTS = ["*"]
 
